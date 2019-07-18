@@ -46,6 +46,7 @@ end
 # Lance les méthodes du dessus et vas chercher l'email de chaque député sur leurs url ... #
 # L'opération prend quelque minute ... # 
 def final
+	puts " Attention, chargement long... le programme termine à 500+"
 tab_namef_depute = second_name
 tab_namep_depute = first_name
 tab_url_depute = url
@@ -57,6 +58,18 @@ tab_url_depute.each do |url|
 	depute_mail = page1.xpath ('//html/body/div/div[3]/div/div/div/section[1]/div/article/div[3]/div/dl/dd[4]/ul/li[2]/a')
 	tab_mail_depute << depute_mail.text
 	puts count += 1 
+	if count == 100
+		puts "Mais? vous êtes encore la ???"
+	end
+	if count == 200 
+		puts " Hahaha je vous avez dit que c'est long ! "
+	end
+	if count == 350 
+		puts " Sa sert a rien de regarder les nombres défilé, sa n'avance pas plus vite..."
+	end
+	if count == 500 
+		puts " C'est toujours pas finis bordel????"
+	end
 end
 
 n = 0

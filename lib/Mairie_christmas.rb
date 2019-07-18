@@ -10,7 +10,7 @@ tab_name = []
 name_mairie.each do |name|
 tab_name << name.text
 end
-puts tab_name[1]
+return tab_name[1]
 end
 # Trouve le nom de la mairie de la ciotat .. #
 
@@ -22,7 +22,7 @@ tab_mail = []
 mail_mairie.each do |mail|
 tab_mail << mail.text
 end
-puts tab_mail
+return tab_mail
 end
 # Trouve le mail de la mairie de la ciotat #
 
@@ -43,26 +43,34 @@ end
 
 
 def mail_all_13
+count = 0
 tab_13_all_mail = []
 tab_html_13 = html
 tab_html_13.each do |html_13|
 	page = Nokogiri::HTML(open("http://annuaire-des-mairies.com#{html_13}"))
 	mail_mairie_13 = page.xpath('//html/body/div/main/section[2]/div/table/tbody/tr[4]/td[2]')
 	tab_13_all_mail << mail_mairie_13.text
+	count += 1
+	puts count
 end
+puts " Mail is ok .... do name now "
 return tab_13_all_mail
 end
 #return un tableau qui contient le mail des mairie du 13 #
 
 
 def name_all_13
+count = 0
 tab_13_all_name = []
 tab_html_13 = html
 tab_html_13.each do |html_13|
 	page = Nokogiri::HTML(open("http://annuaire-des-mairies.com#{html_13}"))
 	name_mairie_13 = page.xpath('//html/body/div/main/section[1]/div/div/div/h1')
 	tab_13_all_name << name_mairie_13.text
+	count += 1 
+	puts count
 end
+puts " Name is ok ... now go hash "
 return tab_13_all_name
 end
 # Return un tableau qui contient les noms des mairies du 13 #
@@ -73,7 +81,6 @@ end
 def make_hash
 mail_all = mail_all_13
 name_all = name_all_13
-
 hash = {}
 hash = name_all.zip(mail_all).to_h
 hash_tab = []
